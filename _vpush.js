@@ -5,7 +5,8 @@
  * vPush - 一款专业高效实用的微信小程序推送平台
  * https://vpush.cloud
  * https://dev.vpush.cloud
- * 版本：20180831
+ * https://github.com/safe-dog/vpush-sdk
+ * 版本：20180904
  */
 
 /**
@@ -177,6 +178,33 @@ class vPush {
     } else {
       throw new Error('tag 应为string或array类型！')
     }
+  }
+
+  /**
+   * 推送给当前用户
+   * data = {id, secret, data, path}
+   */
+  pushToMe (data, callback) {
+    wx.request({
+      url: VPUSH_HOST + '/functions/PUSH_API',
+      method: 'POST',
+      header: {
+        'X-Parse-Application-Id': VPUSH_KEY,
+        'Content-Type': 'application/json'
+      },
+      dataType: 'json',
+      data: Object.assign(data, {
+        openId: this.openId
+      }),
+      success: ret => {
+        console.log('[pushToMe.success]', ret);
+        callback && callback(ret);
+      },
+      fail: err => {
+        console.log('[pushToMe.failed]', err);
+        callback && callback(false);
+      }
+    })
   }
 }
 
