@@ -6,25 +6,33 @@
  * https://vpush.cloud
  * https://dev.vpush.cloud
  * https://github.com/safe-dog/vpush-sdk
- * 版本：20180904
+ * 版本：20180906
  */
 
+var CONFIG = require('./config');
 /**
  * 自建服务接口配置
  * 如果不使用自己搭建的推送服务，那么请留空，默认会使用vPush的API接口
  */
-var CUSTOM_API_URL = '';
-var CUSTOM_API_APPID = '';
+var CUSTOM_API_URL = CONFIG.custom.api;
+var CUSTOM_API_APPID = CONFIG.custom.key;
 
 /**
  * vPush的API接口配置
  * 请自行替换VPUSH_APPID为你在开发者控制台添加的ID
  */
 
-var VPUSH_APPID = ''; // 自行更换
+var VPUSH_APPID = CONFIG.id; // 自行更换
 
-var VPUSH_HOST = 'https://vpush2.safedog.cc/api';
-var VPUSH_KEY = 'c0c0_0g0o0d0e0f0a0s0_020h0s0u0p0v'.split('0').reverse().join('');
+// 旧版本的接口，如果你当前小程序配置的域名为这个，那么可以暂时不更换
+// var VPUSH_HOST = 'https://vpush2.safedog.cc/api';
+
+// 新版本接口，请将cloud.safedog.cc添加到request域名列表
+var VPUSH_HOST = 'https://cloud.safedog.cc/vpush';
+
+// 旧版本的接口KEY
+// var VPUSH_KEY = 'c0c0_0g0o0d0e0f0a0s0_020h0s0u0p0v'.split('0').reverse().join('');
+var VPUSH_KEY = 'guren_cloud_vpush';
 
 // ^_^
 /**
@@ -39,7 +47,7 @@ class vPush {
   constructor () {
 
     if (!CUSTOM_API_APPID && !VPUSH_APPID) {
-      console.warn('[VPUSH_ERROR] 请编辑_vpush.js文件，加入您的应用ID或者接口配置！');
+      console.warn('[VPUSH_ERROR] 请编辑vpush/config.js文件，加入您的应用ID或者接口配置！');
       throw new Error('[VPUSH_INIT]');
     }
     this.openId = '';

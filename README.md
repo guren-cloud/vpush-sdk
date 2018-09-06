@@ -6,8 +6,13 @@
 [https://dev.vpush.cloud](https://dev.vpush.cloud)
 
 ## 配置
-后台创建应用后，复制ID，编辑`_vpush.js`文件，填写`VPUSH_APPID`变量即可。   
-域名：登陆微信开发者后台，设置添加一个request域名：https://vpush2.safedog.cc
+后台创建应用后，复制ID，编辑`config.js`文件，填写`id`变量即可。   
+
+**域名：** 登陆微信开发者后台，设置添加一个request域名：
+
+~~https://vpush2.safedog.cc~~ （旧接口，请勿使用）
+
+> https://cloud.safedog.cc
 
 
 ## 使用
