@@ -6,7 +6,7 @@ view容器封装
  -->
 
 <form report-submit bindsubmit='vPushHandler'>
-  <button form-type='submit'>
+  <button form-type='submit' hover-class='.button-hover'>
     <slot />
   </button>
 </form>
