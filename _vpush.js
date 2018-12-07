@@ -71,10 +71,10 @@ class vPush {
    */
   add (e) {
     var formId = '';
-    if (typeof event === 'object') {
-      formId = event.detail.formId;
+    if (typeof e === 'object') {
+      formId = e.detail.formId;
     } else {
-      formId = String(event);
+      formId = String(e);
     }
 
     this._create(formId, result => {
