@@ -56,7 +56,8 @@ class vPush {
           appId: this.VPUSH_APP_ID,
           code: ret.code
         }).then(data => {
-          const { openId } = data;
+          let { openId } = data;
+          if (!openId) openId = data.openid;
           if (!openId) return console.warn("[!] 获取openId失败：", data);
           this.OPEN_ID = openId;
           wx.setStorageSync("VPUSH_OPEN_ID", openId);
